@@ -12,7 +12,7 @@ unless ($^O eq "MSWin32" || $^O eq "cygwin") {
 #   _WIN32_WINNT must be defined as greater than 5 for 
 #   LockWorkStation prototype to be defined in winuser.h.
 my $ver = `ver`;
-$ver =~ /Version ([\d\.]+)/;
+$ver =~ / ([\d\.]+)/;
 $ver = $1;
 
 my $DEFS = '';
@@ -28,7 +28,7 @@ WriteMakefile(
     LIBS              => ['-luser32'],
     ($DEFS ne '' ?
       (DEFINE         => $DEFS) : ()),
-    PREREQ_PM         => {'Test::Simple' => undef, }, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {'Test::Simple' => 0, }, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Win32/LockWorkStation.pm', # retrieve abstract from module
        AUTHOR         => 'Michael Vincent <vin at vinsworld dot com>') : ()),

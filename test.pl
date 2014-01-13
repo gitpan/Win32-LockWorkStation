@@ -3,7 +3,9 @@
 # `make test'. After `make install' it should work as `perl test.pl'
 
 use strict;
+use warnings;
 use Test::Simple tests => 2;
+use ExtUtils::MakeMaker qw(prompt);
 
 my $NUM_TESTS = 2;
 
@@ -26,11 +28,9 @@ print <<STOP;
 
 STOP
 
-print "Continue with tests? ('y' and 'Enter')  : ";
-my $answer = <STDIN>;
-chomp $answer;
+my $continue = prompt("Continue with tests? ('y' and 'Enter')  : ", '');
 
-if (lc($answer) ne 'y') {
+if ($continue eq '') {
     for (2..$NUM_TESTS) {
         ok(1, "Skipping test ...")
     }
