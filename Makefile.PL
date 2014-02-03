@@ -15,19 +15,16 @@ my $ver = `ver`;
 $ver =~ / ([\d\.]+)/;
 $ver = $1;
 
-my $DEFS = '';
-if ($ver >= 5) {
-    $DEFS = '-D_WIN32_WINNT=0x0500'
-} else {
+if ($ver < 5) {
     die "OS unsupported\n  Windows version must be greater than 5.\n  Found '$ver' with the 'ver' command."
 }
 
 WriteMakefile(
     NAME              => 'Win32::LockWorkStation',
     VERSION_FROM      => 'lib/Win32/LockWorkStation.pm', # finds $VERSION
+    ($ExtUtils::MakeMaker::VERSION >= 6.3002) ? ('LICENSE'  => 'perl', ) : (),
     LIBS              => ['-luser32'],
-    ($DEFS ne '' ?
-      (DEFINE         => $DEFS) : ()),
+    DEFINE            => '-D_WIN32_WINNT=0x0500',
     PREREQ_PM         => {'Test::Simple' => 0, }, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Win32/LockWorkStation.pm', # retrieve abstract from module

@@ -8,3 +8,7 @@ Revision history for Perl extension Win32::LockWorkStation.
       - Updated Makefile.PL Windows version detection.
       - Timeout on advanced tests with EU::MM prompt().
       - Clean up use and comments in module.
+
+0.03  Wed Jan 15 10:46:58 2014
+      - Updated Makefile.PL Windows version detection.
+      - Add #define PERL_NO_GET_CONTEXT

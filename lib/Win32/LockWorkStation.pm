@@ -1,19 +1,18 @@
 package Win32::LockWorkStation;
 
 ########################################################
-#
 # AUTHOR = Michael Vincent
 # www.VinsWorld.com
-#
 ########################################################
 
 require 5.005;
 
 use strict;
+use warnings;
 use Exporter;
 use DynaLoader;
 
-our $VERSION     = '0.02';
+our $VERSION     = '0.03';
 our @ISA         = qw(Exporter DynaLoader);
 our @EXPORT      = qw();
 our %EXPORT_TAGS = (
